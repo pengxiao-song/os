@@ -72,7 +72,7 @@ void mysys(char *command)
             if (error < 0)
             {
                 printf("%s: Command not found.\n", argv[0]);
-                exit(0);
+                return ; 
             }
         }
 
@@ -83,7 +83,7 @@ void mysys(char *command)
             if (wait(&status) < 0)
             {
                printf("waitfg: waitpid error");
-               exit(0);
+               return ;
             }
         }
         else
