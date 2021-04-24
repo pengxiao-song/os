@@ -77,7 +77,16 @@ int builtin_command(char **argv)
 {
     if (!strcmp(argv[0], "cd"))
     {
-        chdir(argv[1]);
+        if (chdir(argv[1]) == -1)
+            perror("cd error");
+        return 1;
+    }
+    if (!strcmp(argv[0], "pwd"))
+    {
+        char cwd[MAXLINE];
+        if (!getcwd(cwd, MAXLINE))
+            perror("pwd error");
+        printf("%s\n", cwd);
         return 1;
     }
     if (!strcmp(argv[0], "exit"))
