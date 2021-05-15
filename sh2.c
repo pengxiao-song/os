@@ -13,14 +13,6 @@ void eval(char *command);
 int parseline(char *buf, char **argv);
 int builtin_command(char **argv);
 
-
-#define MAXARGS 128
-#define MAXLINE 128
-
-void eval(char *command);
-int parseline(char *buf, char **argv);
-int builtin_command(char **argv);
-
 int main()
 {
     char command[MAXLINE];
@@ -128,8 +120,11 @@ int builtin_command(char **argv)
     		}	
     	}
     	write(1, "\n", strlen("\n"));
-    	dup2(tmp, 1);
-    	close(tmp);
+        
+        if (idx != MAXARGS){
+            dup2(tmp, 1);
+            close(tmp);   
+        }
     	return 1;
     }
     if (!strcmp(argv[0], "exit"))
