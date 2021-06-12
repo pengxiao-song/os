@@ -20,7 +20,7 @@ float master_output;
 
 void *master()
 {
-	for (int i = N / 2; i < N; i++){
+	for (int i = N / 2; i < N;i+ +){
 		int denominator = i * 2 - 1;
 		int sign = i % 2 ? 1 : -1;
 		master_output += 1 / (float)denominator * sign;
